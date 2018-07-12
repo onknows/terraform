@@ -1,0 +1,18 @@
+# Compiled files
+*.tfstate
+*.tfstate.backup
+*.tfstate.lock.info
+
+# Module directory
+.terraform/
+
+# Sensitive data
+azure.auto.tfvars
+azure.tfvars
+
+# Terraform plan
+openshift.plan
+
+# Pub keys
+id_rsa_dic_azure_openshift.pub
+id_rsa_dic_azure_bastion.pub

@@ -1,0 +1,12 @@
+
+azure_tenant_id = "xxxxxx-xx-xx-xx-xxxxxxx"
+azure_subscription_id = "xxxxxx-xx-xx-xx-xxxxxxx"
+azure_location = "West Europe"
+
+azure_client_id = "xxxxxx-xx-xx-xx-xxxxxxx"
+azure_client_secret = "xxxxxx-xx-xx-xx-xxxxxxx"
+
+public-ip-bastion = "/subscriptions/xxxxxx-xx-xx-xx-xxxxxxx/resourceGroups/ip-resources/providers/Microsoft.Network/publicIPAddresses/public-ip-bastion"
+public-ip-infra = "/subscriptions/xxxxxx-xx-xx-xx-xxxxxxx/resourceGroups/ip-resources/providers/Microsoft.Network/publicIPAddresses/public-ip-infra"
+public-ip-master = "/subscriptions/xxxxxx-xx-xx-xx-xxxxxxx/resourceGroups/ip-resources/providers/Microsoft.Network/publicIPAddresses/public-ip-master"
+public-ip-revproxy = "/subscriptions/xxxxxx-xx-xx-xx-xxxxxxx/resourceGroups/ip-resources/providers/Microsoft.Network/publicIPAddresses/public-ip-revproxy"
