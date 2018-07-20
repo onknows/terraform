@@ -14,5 +14,5 @@ azure.tfvars
 openshift.plan
 
 # Pub keys
-id_rsa_dic_azure_openshift.pub
-id_rsa_dic_azure_bastion.pub
+id_rsa_azure_bastion*
+id_rsa_azure_openshift*

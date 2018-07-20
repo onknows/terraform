@@ -1,45 +1,9 @@
-#resource "azurerm_public_ip" "master" {
-#  name                         = "openshift-master-public-ip"
-#  location                     = "${var.azure_location}"
-#  resource_group_name          = "${azurerm_resource_group.openshift.name}"
-#  public_ip_address_allocation = "static"
-#}
 
 resource "azurerm_availability_set" "master" {
   name                = "openshift-master-availability-set"
   location            = "${var.azure_location}"
   resource_group_name = "${azurerm_resource_group.openshift.name}"
   managed             = true
-}
-
-resource "azurerm_lb" "master" {
-  name                = "openshift-master-load-balancer"
-  location            = "${var.azure_location}"
-  resource_group_name = "${azurerm_resource_group.openshift.name}"
-
-  frontend_ip_configuration {
-    name                          = "default"
-    # public_ip_address_id          = "${azurerm_public_ip.master.id}"
-    public_ip_address_id          = "${var.public-ip-master}"
-    private_ip_address_allocation = "dynamic"
-  }
-}
-
-resource "azurerm_lb_backend_address_pool" "master" {
-  name                = "openshift-master-address-pool"
-  resource_group_name = "${azurerm_resource_group.openshift.name}"
-  loadbalancer_id     = "${azurerm_lb.master.id}"
-}
-
-resource "azurerm_lb_rule" "master-8443-8443" {
-  name                    = "master-lb-rule-8443-8443"
-  resource_group_name     = "${azurerm_resource_group.openshift.name}"
-  loadbalancer_id         = "${azurerm_lb.master.id}"
-  backend_address_pool_id = "${azurerm_lb_backend_address_pool.master.id}"
-  protocol                       = "tcp"
-  frontend_port                  = 8443
-  backend_port                   = 8443
-  frontend_ip_configuration_name = "default"
 }
 
 resource "azurerm_network_security_group" "master" {
@@ -73,7 +37,6 @@ resource "azurerm_network_interface" "master" {
     name                                    = "default"
     subnet_id                               = "${azurerm_subnet.master.id}"
     private_ip_address_allocation           = "dynamic"
-    load_balancer_backend_address_pools_ids = ["${azurerm_lb_backend_address_pool.master.id}"]
   }
 }
 
@@ -121,7 +84,7 @@ resource "azurerm_virtual_machine" "master" {
     disable_password_authentication = true
     ssh_keys {
       path = "/home/${var.admin_user}/.ssh/authorized_keys"
-      key_data = "${file("${path.module}/id_rsa_dic_azure_openshift.pub")}"
+      key_data = "${file("${path.module}/id_rsa_azure_openshift.pub")}"
     }
   }
 }

@@ -1,9 +1,3 @@
-#resource "azurerm_public_ip" "revproxy" {
-#  name                         = "zgw-revproxy-public-ip"
-#  location                     = "${var.azure_location}"
-#  resource_group_name          = "${azurerm_resource_group.openshift.name}"
-#  public_ip_address_allocation = "static"
-#}
 
 resource "azurerm_network_interface" "revproxy" {
   name                      = "openshift-revproxy-nic"
@@ -88,7 +82,7 @@ resource "azurerm_virtual_machine" "revproxy" {
     disable_password_authentication = true
     ssh_keys {
       path = "/home/${var.admin_user}/.ssh/authorized_keys"
-      key_data = "${file("${path.module}/id_rsa_dic_azure_openshift.pub")}"
+      key_data = "${file("${path.module}/id_rsa_azure_openshift.pub")}"
     }
   }
 }

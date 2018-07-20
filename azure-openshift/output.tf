@@ -11,6 +11,9 @@ output "infra_count" {
   value = "${var.infra_count}"
 }
 
+output "lb_count" {
+  value = "${var.infra_count}"
+}
 output "admin_user" {
   value = "${var.admin_user}"
 }
