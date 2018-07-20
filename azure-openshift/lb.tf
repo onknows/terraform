@@ -21,7 +21,7 @@ resource "azurerm_network_interface" "lb" {
 
   ip_configuration {
     name                                    = "default"
-    subnet_id                               = "${azurerm_subnet.lb.id}"
+    subnet_id                               = "${azurerm_subnet.other.id}"
     private_ip_address_allocation           = "dynamic"
   }
 }
